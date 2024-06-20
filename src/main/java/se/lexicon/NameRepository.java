@@ -1,5 +1,6 @@
 package se.lexicon;
 
+import java.util.Arrays;
 /**
  * The NameRepository class provides methods to manage a list of names.
  * It offers functionalities such as adding, removing, finding, and updating names.
@@ -72,5 +73,59 @@ public class NameRepository {
         newNames[names.length] = fullName;
         names = newNames;
         return true;
+    }
+    /**
+     * Finds all names that match the given firstName.
+     *
+     * @param firstName The first name to search for.
+     * @return An array containing all matching names.
+     */
+    public static String[] findByFirstName(String firstName) {
+        String[] results = new String[names.length];
+        int count = 0;
+        for (String name : names) {
+            if (name.split(" ")[0].equalsIgnoreCase(firstName)) {
+                results[count++] = name;
+            }
+        }
+        return Arrays.copyOf(results, count);
+    }
+
+    /**
+     * Finds all names that match the given lastName.
+     *
+     * @param lastName The last name to search for.
+     * @return An array containing all matching names.
+     */
+    public static String[] findByLastName(String lastName) {
+        String[] results = new String[names.length];
+        int count = 0;
+        for (String name : names) {
+            if (name.split(" ")[1].equalsIgnoreCase(lastName)) {
+                results[count++] = name;
+            }
+        }
+        return Arrays.copyOf(results, count);
+    }
+
+    /**
+     * Updates a name in the names array from the original name to the updated name.
+     *
+     * @param original    The original name to update.
+     * @param updatedName The updated name to set.
+     * @return True if the name is updated successfully; false if the updated name already exists or the original name is not found.
+     */
+    public static boolean update(String original, String updatedName) {
+        for (int i = 0; i < names.length; i++) {
+            if (names[i].equalsIgnoreCase(original)) {
+                if (find(updatedName) == null) {
+                    names[i] = updatedName;
+                    return true;
+                } else {
+                    return false; // Updated name exists
+                }
+            }
+        }
+        return false; // Original name not found
     }
 }
