@@ -128,4 +128,27 @@ public class NameRepository {
         }
         return false; // Original name not found
     }
+    /**
+     * Removes a name from the names array, case-insensitively.
+     *
+     * @param fullName The full name to remove.
+     * @return True if the name is removed successfully; false if the name is not found in the array.
+     */
+    public static boolean remove(String fullName) {
+        int index = -1;
+        for (int i = 0; i < names.length; i++) {
+            if (names[i].equalsIgnoreCase(fullName)) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1) {
+            return false; // Name could not be found
+        }
+        String[] newNames = new String[names.length - 1];
+        System.arraycopy(names, 0, newNames, 0, index);
+        System.arraycopy(names, index + 1, newNames, index, names.length - index - 1);
+        names = newNames;
+        return true;
+    }
 }

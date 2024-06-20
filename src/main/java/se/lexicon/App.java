@@ -48,5 +48,11 @@ public class App {
         System.out.println("Updated Erik Svensson to Erik Johnson again: " + updated);
         updated = NameRepository.update("Unknown Name", "Erik Johnson");
         System.out.println("Updated Unknown Name to Erik Johnson: " + updated);
+
+        // Test remove()
+        boolean removed = NameRepository.remove("Erik Johnson");
+        System.out.println("Removed Erik Johnson: " + removed);
+        removed = NameRepository.remove("Erik Svensson");
+        System.out.println("Removed Erik Svensson: " + removed);
     }
 }
