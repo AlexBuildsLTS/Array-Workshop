@@ -1,4 +1,4 @@
-package se.lexicon;
+package se.alex.lexicon;
 
 import java.util.Arrays;
 /**
